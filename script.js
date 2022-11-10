@@ -3,6 +3,7 @@ const addBookBtn = document.querySelector('.addbook-btn');
 
 form.addEventListener('submit', (e) => 
     e.preventDefault());
+
 addBookBtn.addEventListener('click', () => addBookToLibrary());
 
 let myLibrary = [];
@@ -23,6 +24,7 @@ function addBookToLibrary() {
     const fauthor = document.getElementById('author').value;
     const fpages = document.getElementById('pages').value;
     const fread = document.getElementById('is-read').checked;
+    if (!ftitle || !fauthor || !fpages) return;
     
     const newBook = new Book(ftitle, fauthor, fpages, fread);
     myLibrary.push(newBook);
