@@ -22,7 +22,7 @@ function addBookToLibrary() {
     const ftitle = document.getElementById('title').value;
     const fauthor = document.getElementById('author').value;
     const fpages = document.getElementById('pages').value;
-    const fread = document.getElementById('is-read');
+    const fread = document.getElementById('is-read').checked;
     
     const newBook = new Book(ftitle, fauthor, fpages, fread);
     myLibrary.push(newBook);
