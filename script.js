@@ -42,7 +42,7 @@ function createCard(title, author, pages, read) {
     ptitle.innerText = title;
     pauthor.innerText = author;
     ppages.innerText = pages;
-    readButton.innerText = isReadButton(read);
+    readButton.innerText = read === true ? "READ" : "NOT READ YET";
     console.log(title, author, pages, read);
 
     bookShelf.appendChild(card);
@@ -56,9 +56,5 @@ function displayTheBook() {
     myLibrary.forEach((e) => createCard(e.title, e.author, e.pages, e.read));
 };
 
-function isReadButton(read) {
-    if (read === true) {
-        return "READ";
-    } else return "NOT READ YET";
-};
+// WHen button is clicked change the read status in loop and in card.
 
