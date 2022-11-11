@@ -1,9 +1,8 @@
 const form = document.querySelector('form');
 const addBookBtn = document.querySelector('.addbook-btn');
+const bookShelf = document.querySelector('.book-shelf');
 
-form.addEventListener('submit', (e) => 
-    e.preventDefault());
-
+form.addEventListener('submit', (e) => e.preventDefault());
 addBookBtn.addEventListener('click', () => addBookToLibrary());
 
 let myLibrary = [];
@@ -30,4 +29,33 @@ function addBookToLibrary() {
     myLibrary.push(newBook);
     console.log(newBook);
     console.log(myLibrary);
+    form.reset();
 };
+
+function createCard(title, author, pages, read) {
+    const card = document.createElement('div');
+    const ptitle = document.createElement('p');
+    const pauthor = document.createElement('p');
+    const ppages = document.createElement('p');
+    const readButton = document.createElement('button')
+
+    // ptitle.textContent = myLibrary.title;
+    console.log(title, author, pages, read);
+
+    bookShelf.appendChild(card);
+    card.appendChild(ptitle);
+    card.appendChild(pauthor);
+    card.appendChild(ppages);
+    card.appendChild(readButton);
+};
+
+function displayTheBook() {
+    myLibrary.forEach((e) => createCard(e.title, e.author, e.pages, e.read));
+};
+
+// Array of books
+// When book is added to array
+// make an empty card
+// loop throug array
+// fill the card
+
