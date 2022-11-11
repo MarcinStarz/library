@@ -11,15 +11,15 @@
 <body>
     <form>
         <input type="text" id="title" placeholder="Title" minlength="1" maxlength="100" required>
-
         <input type="text" id="author" placeholder="Author" minlength="1" maxlength="100" required>
-
         <input type="number" id="pages" placeholder="Pages" min="1" max="99999" required>
-
-        <label for="is_read">Have you read it?</label>
         <input type="checkbox" name="is_read" id="is-read">
 
         <button type="submit" class="addbook-btn">Add book</button>
     </form>
+
+    <div class="book-shelf">
+        <div class="card"></div>
+    </div>
 </body>
 </html>
