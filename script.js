@@ -39,7 +39,10 @@ function createCard(title, author, pages, read) {
     const ppages = document.createElement('p');
     const readButton = document.createElement('button')
 
-    // ptitle.textContent = myLibrary.title;
+    ptitle.innerText = title;
+    pauthor.innerText = author;
+    ppages.innerText = pages;
+    readButton.innerText = isReadButton(read);
     console.log(title, author, pages, read);
 
     bookShelf.appendChild(card);
@@ -53,9 +56,9 @@ function displayTheBook() {
     myLibrary.forEach((e) => createCard(e.title, e.author, e.pages, e.read));
 };
 
-// Array of books
-// When book is added to array
-// make an empty card
-// loop throug array
-// fill the card
+function isReadButton(read) {
+    if (read === true) {
+        return "READ";
+    } else return "NOT READ YET";
+};
 
