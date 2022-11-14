@@ -60,11 +60,11 @@ function createCard(title, author, pages, read) {
 };
 
 function displayTheBook() {
-    clearBookshelf();
+    clearBookShelf();
     myLibrary.forEach((e) => createCard(e.title, e.author, e.pages, e.read));
 };
 
-function clearBookshelf() {
+function clearBookShelf() {
     const visibleBooks = document.querySelectorAll('.card');
     if (visibleBooks.length > 0) {
         visibleBooks.forEach(function (e) {
@@ -72,3 +72,11 @@ function clearBookshelf() {
         });
     };
 };
+
+//Form open and close
+function openForm() {
+    document.querySelector('.form-pop-up').style.display = 'block';
+};
+function closeForm() {
+    document.querySelector('.form-pop-up').style.display = 'none';
+}

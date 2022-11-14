@@ -9,14 +9,17 @@
     <title>Library</title>
 </head>
 <body>
-    <form>
-        <input type="text" id="title" placeholder="Title" minlength="1" maxlength="100" required>
-        <input type="text" id="author" placeholder="Author" minlength="1" maxlength="100" required>
-        <input type="number" id="pages" placeholder="Pages" min="1" max="99999" required>
-        <input type="checkbox" name="is_read" id="is-read">
-
-        <button type="submit" class="addbook-btn">Add book</button>
-    </form>
+    <button id="open-form" onclick="openForm()">ADD BOOK</button>
+    <div class="form-pop-up">
+        <form>
+            <input type="text" id="title" placeholder="Title" minlength="1" maxlength="100" required>
+            <input type="text" id="author" placeholder="Author" minlength="1" maxlength="100" required>
+            <input type="number" id="pages" placeholder="Pages" min="1" max="99999" required>
+            <input type="checkbox" name="is_read" id="is-read">
+    
+            <button type="submit" id="close-form "class="addbook-btn" onclick="closeForm()">ADD BOOK</button>
+        </form>
+    </div>
 
     <div class="book-shelf">
     </div>
