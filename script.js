@@ -27,6 +27,7 @@ function addBookToLibrary() {
     
     const newBook = new Book(ftitle, fauthor, fpages, fread);
     myLibrary.push(newBook);
+    displayTheBook();
     console.log(newBook);
     console.log(myLibrary);
     form.reset();
@@ -37,7 +38,13 @@ function createCard(title, author, pages, read) {
     const ptitle = document.createElement('p');
     const pauthor = document.createElement('p');
     const ppages = document.createElement('p');
-    const readButton = document.createElement('button')
+    const readButton = document.createElement('button');
+    
+    card.classList.add('card');
+    ptitle.classList.add('title');
+    pauthor.classList.add('author');
+    ppages.classList.add('pages');
+    readButton.classList.add('read-button');
 
     ptitle.innerText = title;
     pauthor.innerText = author;
@@ -53,8 +60,11 @@ function createCard(title, author, pages, read) {
 };
 
 function displayTheBook() {
+    const visibleBooks = document.querySelectorAll('.card');
+    if (visibleBooks.length > 0) {
+        visibleBooks.forEach(function (e) {
+            return e.remove();
+        });
+    }
     myLibrary.forEach((e) => createCard(e.title, e.author, e.pages, e.read));
 };
-
-// WHen button is clicked change the read status in loop and in card.
-
