@@ -60,11 +60,15 @@ function createCard(title, author, pages, read) {
 };
 
 function displayTheBook() {
+    clearBookshelf();
+    myLibrary.forEach((e) => createCard(e.title, e.author, e.pages, e.read));
+};
+
+function clearBookshelf() {
     const visibleBooks = document.querySelectorAll('.card');
     if (visibleBooks.length > 0) {
         visibleBooks.forEach(function (e) {
             return e.remove();
         });
-    }
-    myLibrary.forEach((e) => createCard(e.title, e.author, e.pages, e.read));
+    };
 };
