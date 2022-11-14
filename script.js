@@ -78,5 +78,10 @@ function openForm() {
     document.querySelector('.form-pop-up').style.display = 'block';
 };
 function closeForm() {
+    const ftitle = document.getElementById('title').value;
+    const fauthor = document.getElementById('author').value;
+    const fpages = document.getElementById('pages').value;
+    if (!ftitle || !fauthor || !fpages) return; // if form input is null don't close the form.
+
     document.querySelector('.form-pop-up').style.display = 'none';
-}
+};
