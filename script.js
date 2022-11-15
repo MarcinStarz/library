@@ -41,6 +41,7 @@ function createCard(id, title, author, pages, read) {
     const pauthor = document.createElement('p');
     const ppages = document.createElement('p');
     const readButton = document.createElement('button');
+    const deleteButton = document.createElement('button');
     
     card.setAttribute('id', id);
     card.classList.add('card');
@@ -48,23 +49,29 @@ function createCard(id, title, author, pages, read) {
     pauthor.classList.add('author');
     ppages.classList.add('pages');
     readButton.classList.add('read-button');
+    deleteButton.classList.add('delete-book');
 
     ptitle.innerText = title;
     pauthor.innerText = author;
     ppages.innerText = pages;
     readButton.innerText = read === true ? "READ" : "NOT READ YET";
+    deleteButton.innerText = 'DELETE BOOK';
     console.log(title, author, pages, read);
-
+    
     bookShelf.appendChild(card);
     card.appendChild(ptitle);
     card.appendChild(pauthor);
     card.appendChild(ppages);
     card.appendChild(readButton);
+    card.appendChild(deleteButton);
+
+    deleteButton.addEventListener('click', () => deleteBook(event));
 };
 
 function displayTheBook() {
     clearBookShelf();
     myLibrary.forEach((e) => createCard(e.id, e.title, e.author, e.pages, e.read));
+
 };
 
 function clearBookShelf() {
@@ -80,7 +87,7 @@ function generateID(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1) + min);
-  };
+};
 
 //Form open and close
 function openForm() {
@@ -94,3 +101,18 @@ function closeForm() {
 
     document.querySelector('.form-pop-up').style.display = 'none';
 };
+
+function deleteBook(event) {
+    //grab card's ID
+    const cardId = event.target.parentElement.id;
+    console.log(cardId);
+    const arrIndex = myLibrary.findIndex((e) => matchID(cardId, e.id));
+    console.log(arrIndex);
+};
+
+function matchID(cardId, element) {
+    if (parseInt(cardId) === element) {
+      return true;
+    } return false;
+};
+
