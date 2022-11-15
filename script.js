@@ -71,7 +71,6 @@ function createCard(id, title, author, pages, read) {
 function displayTheBook() {
     clearBookShelf();
     myLibrary.forEach((e) => createCard(e.id, e.title, e.author, e.pages, e.read));
-
 };
 
 function clearBookShelf() {
@@ -89,6 +88,23 @@ function generateID(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 };
 
+function deleteBook(event) {
+    const cardId = event.target.parentElement.id;
+    const card = event.target.parentElement;
+    console.log(cardId);
+    const arrIndex = myLibrary.findIndex((e) => matchID(cardId, e.id));
+    console.log(arrIndex);
+    myLibrary.splice(arrIndex, 1);
+    console.log(myLibrary);
+    card.remove();
+};
+    
+function matchID(cardId, element) {
+    if (parseInt(cardId) === element) {
+      return true;
+    } return false;
+};
+
 //Form open and close
 function openForm() {
     document.querySelector('.form-pop-up').style.display = 'block';
@@ -100,19 +116,5 @@ function closeForm() {
     if (!ftitle || !fauthor || !fpages) return; // if form input is null don't close the form.
 
     document.querySelector('.form-pop-up').style.display = 'none';
-};
-
-function deleteBook(event) {
-    //grab card's ID
-    const cardId = event.target.parentElement.id;
-    console.log(cardId);
-    const arrIndex = myLibrary.findIndex((e) => matchID(cardId, e.id));
-    console.log(arrIndex);
-};
-
-function matchID(cardId, element) {
-    if (parseInt(cardId) === element) {
-      return true;
-    } return false;
 };
 
