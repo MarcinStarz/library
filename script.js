@@ -7,7 +7,8 @@ addBookBtn.addEventListener('click', () => addBookToLibrary());
 
 let myLibrary = [];
 
-function Book(title, author, pages, read) {
+function Book(id, title, author, pages, read) {
+    this.id = id;
     this.title = title;
     this.author = author;
     this.pages = pages;
@@ -19,13 +20,14 @@ Book.prototype.info = function() {
 };
 
 function addBookToLibrary() {
+    const bookId = generateID(10000, 99999);
     const ftitle = document.getElementById('title').value;
     const fauthor = document.getElementById('author').value;
     const fpages = document.getElementById('pages').value;
     const fread = document.getElementById('is-read').checked;
     if (!ftitle || !fauthor || !fpages) return;
     
-    const newBook = new Book(ftitle, fauthor, fpages, fread);
+    const newBook = new Book(bookId, ftitle, fauthor, fpages, fread);
     myLibrary.push(newBook);
     displayTheBook();
     console.log(newBook);
@@ -33,13 +35,14 @@ function addBookToLibrary() {
     form.reset();
 };
 
-function createCard(title, author, pages, read) {
+function createCard(id, title, author, pages, read) {
     const card = document.createElement('div');
     const ptitle = document.createElement('p');
     const pauthor = document.createElement('p');
     const ppages = document.createElement('p');
     const readButton = document.createElement('button');
     
+    card.setAttribute('id', id);
     card.classList.add('card');
     ptitle.classList.add('title');
     pauthor.classList.add('author');
@@ -61,7 +64,7 @@ function createCard(title, author, pages, read) {
 
 function displayTheBook() {
     clearBookShelf();
-    myLibrary.forEach((e) => createCard(e.title, e.author, e.pages, e.read));
+    myLibrary.forEach((e) => createCard(e.id, e.title, e.author, e.pages, e.read));
 };
 
 function clearBookShelf() {
@@ -72,6 +75,12 @@ function clearBookShelf() {
         });
     };
 };
+
+function generateID(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1) + min);
+  };
 
 //Form open and close
 function openForm() {
