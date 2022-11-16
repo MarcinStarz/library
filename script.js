@@ -1,6 +1,6 @@
 const form = document.querySelector('form');
 const addBookBtn = document.querySelector('.addbook-btn');
-const bookShelf = document.querySelector('.book-shelf');
+const bookShelf = document.querySelector('#book-shelf');
 
 form.addEventListener('submit', (e) => e.preventDefault());
 addBookBtn.addEventListener('click', () => addBookToLibrary());
@@ -63,7 +63,7 @@ function createCard(id, title, author, pages, read) {
 
     ptitle.innerText = title;
     pauthor.innerText = author;
-    ppages.innerText = pages;
+    ppages.innerText = pages + ' pages';
     readButton.innerText = read === true ? "READ" : "NOT READ YET";
     deleteButton.innerText = 'DELETE BOOK';
     console.log(title, author, pages, read);
@@ -116,7 +116,7 @@ function deleteBook(event) {
     
 function readToggle(event) {
     const cardId = event.target.parentElement.id
-    const readButton = document.querySelector('.read-button');
+    const readButton = event.currentTarget;
     const arrIndex = myLibrary.findIndex((e) => matchID(cardId, e.id));
     if (myLibrary[arrIndex].read === false) {
         myLibrary[arrIndex].isRead();
