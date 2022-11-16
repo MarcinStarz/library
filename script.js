@@ -19,6 +19,16 @@ Book.prototype.info = function() {
     return this.title + " by " + this.author + ", " + this.pages + " pages, " + this.read;
 };
 
+Book.prototype.isRead = function() {
+    this.read = true;
+    console.log('book is read');
+};
+
+Book.prototype.notRead = function() {
+    this.read = false;
+    console.log("books isn't read");
+};
+
 function addBookToLibrary() {
     const bookId = generateID(10000, 99999);
     const ftitle = document.getElementById('title').value;
@@ -65,6 +75,7 @@ function createCard(id, title, author, pages, read) {
     card.appendChild(readButton);
     card.appendChild(deleteButton);
 
+    readButton.addEventListener('click', () => readToggle(event)); 
     deleteButton.addEventListener('click', () => deleteBook(event));
 };
 
@@ -88,21 +99,33 @@ function generateID(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 };
 
+function matchID(cardId, element) {
+    if (parseInt(cardId) === element) {
+      return true;
+    } return false;
+};
+
 function deleteBook(event) {
     const cardId = event.target.parentElement.id;
     const card = event.target.parentElement;
-    console.log(cardId);
     const arrIndex = myLibrary.findIndex((e) => matchID(cardId, e.id));
-    console.log(arrIndex);
     myLibrary.splice(arrIndex, 1);
     console.log(myLibrary);
     card.remove();
 };
     
-function matchID(cardId, element) {
-    if (parseInt(cardId) === element) {
-      return true;
-    } return false;
+function readToggle(event) {
+    const cardId = event.target.parentElement.id
+    const readButton = document.querySelector('.read-button');
+    const arrIndex = myLibrary.findIndex((e) => matchID(cardId, e.id));
+    if (myLibrary[arrIndex].read === false) {
+        myLibrary[arrIndex].isRead();
+        readButton.innerText = 'READ';
+    } else {
+        myLibrary[arrIndex].notRead();
+        readButton.innerText = 'NOT READ YET';
+    };
+    console.log(myLibrary[arrIndex]);
 };
 
 //Form open and close
