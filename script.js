@@ -50,6 +50,7 @@ function createCard(id, title, author, pages, read) {
     const ptitle = document.createElement('p');
     const pauthor = document.createElement('p');
     const ppages = document.createElement('p');
+    const buttonGroup = document.createElement('div');
     const readButton = document.createElement('button');
     const deleteButton = document.createElement('button');
     
@@ -58,6 +59,7 @@ function createCard(id, title, author, pages, read) {
     ptitle.classList.add('title');
     pauthor.classList.add('author');
     ppages.classList.add('pages');
+    buttonGroup.classList.add('.button-group');
     readButton.classList.add('read-button');
     deleteButton.classList.add('delete-book');
 
@@ -74,8 +76,9 @@ function createCard(id, title, author, pages, read) {
     card.appendChild(ptitle);
     card.appendChild(pauthor);
     card.appendChild(ppages);
-    card.appendChild(readButton);
-    card.appendChild(deleteButton);
+    card.appendChild(buttonGroup);
+    buttonGroup.appendChild(readButton);
+    buttonGroup.appendChild(deleteButton);
     
     readButton.addEventListener('click', () => toggleColor(event));
     readButton.addEventListener('click', () => readToggle(event));
@@ -110,7 +113,7 @@ function matchID(cardId, element) {
 
 function deleteBook(event) {
     const cardId = event.target.parentElement.id;
-    const card = event.target.parentElement;
+    const card = event.target.parentElement.parentElement;
     const arrIndex = myLibrary.findIndex((e) => matchID(cardId, e.id));
     myLibrary.splice(arrIndex, 1);
     console.log(myLibrary);
@@ -118,7 +121,7 @@ function deleteBook(event) {
 };
     
 function readToggle(event) {
-    const cardId = event.target.parentElement.id
+    const cardId = event.target.parentElement.parentElement.id
     const readButton = event.currentTarget;
     const arrIndex = myLibrary.findIndex((e) => matchID(cardId, e.id));
     if (myLibrary[arrIndex].read === false) {
