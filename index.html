@@ -21,7 +21,10 @@
                 <input type="text" id="title" placeholder="Title" minlength="1" maxlength="100">
                 <input type="text" id="author" placeholder="Author" minlength="1" maxlength="100">
                 <input type="number" id="pages" placeholder="Pages" min="1" max="99999">
-                <input type="checkbox" name="is_read" id="is-read">
+                <div class="checkbox-wrapper">
+                    <p>Have you read it?</p>
+                    <input type="checkbox" name="is_read" id="is-read">
+                </div>
         
                 <button type="submit" id="close-form "class="addbook-btn" onclick="closeForm()">ADD BOOK</button>
             </form>
@@ -30,5 +33,6 @@
 
     <div id="book-shelf">
     </div>
+    <div class="overlay"></div>
 </body>
 </html>
