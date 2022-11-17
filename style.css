@@ -1,7 +1,50 @@
 :root {
     font-family: 'Sono', sans-serif;
+
+}
+
+#logo {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #064e3b;
 }
 
 .form-pop-up {
     display: none;
+}
+
+#book-shelf {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #ecfdf5;
+    box-shadow: 2px 2px 5px #34f1bc;
+    border-radius: 0.6rem;
+}
+
+.card > p {
+    font-size: 1.3rem;
+    text-align: center;
+    margin: 15px;
+}
+
+.card > button {
+    font-family: 'Sono', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 500;
+    border: 0;
+    border-radius: 5px;
+    padding: 5px;
+    width: 80%;
+}
+
+.delete-book {
+    color: white;
+    background-color: rgb(225, 110, 110);
 }
