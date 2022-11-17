@@ -65,8 +65,10 @@ function createCard(id, title, author, pages, read) {
     pauthor.innerText = author;
     ppages.innerText = pages + ' pages';
     readButton.innerText = read === true ? "READ" : "NOT READ YET";
+    readButton.style.backgroundColor = readButton.innerText === "READ" ? '#059669' : 'rgb(225, 110, 110)';
     deleteButton.innerText = 'DELETE BOOK';
     console.log(title, author, pages, read);
+
     
     bookShelf.appendChild(card);
     card.appendChild(ptitle);
@@ -74,8 +76,9 @@ function createCard(id, title, author, pages, read) {
     card.appendChild(ppages);
     card.appendChild(readButton);
     card.appendChild(deleteButton);
-
-    readButton.addEventListener('click', () => readToggle(event)); 
+    
+    readButton.addEventListener('click', () => toggleColor(event));
+    readButton.addEventListener('click', () => readToggle(event));
     deleteButton.addEventListener('click', () => deleteBook(event));
 };
 
@@ -127,6 +130,15 @@ function readToggle(event) {
     };
     console.log(myLibrary[arrIndex]);
 };
+
+function toggleColor(event) {
+    const readValue = event.currentTarget.innerText;
+    const readButton = event.currentTarget;
+    if (readValue === 'READ') {
+        readButton.style.backgroundColor = 'rgb(225, 110, 110)';
+    } else readButton.style.backgroundColor = '#059669';
+    console.log(readValue);
+}
 
 //Form open and close
 function openForm() {
