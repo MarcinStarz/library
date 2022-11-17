@@ -44,7 +44,40 @@ body {
 }
 
 .form-pop-up {
+    z-index: 1;
+    top: 30%;
     display: none;
+    background-color: white;
+    box-shadow: 2px 2px 2px #34f1bc;
+    border-radius: 10px;
+    position: fixed;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 20px;
+    padding: 20px;
+}
+
+#title,
+#author,
+#pages {
+    font-size: 1.2rem;
+    padding: 8px;
+}
+
+.checkbox-wrapper {
+    display: flex;
+    justify-content: center;
+    flex-wrap: nowrap;
+    gap: 10px;
+}
+
+.checkbox-wrapper > p {
+    margin: 0;
+    font-size: 1.2rem;
 }
 
 #book-shelf {
@@ -83,7 +116,8 @@ body {
     margin: 10px 0 20px 0;
 }
 
-.button-group > button {
+.button-group > button,
+.addbook-btn {
     font-family: 'Sono', sans-serif;
     font-size: 1.1rem;
     font-weight: 500;
@@ -96,4 +130,15 @@ body {
 .delete-book {
     color: white;
     background-color: rgb(225, 110, 110);
+}
+
+.overlay {
+    top: 0;
+    left: 0;
+    position: fixed;
+    display: none;
+    background-color: black;
+    opacity: 30%;
+    width: 100%;
+    height: 100%;
 }
