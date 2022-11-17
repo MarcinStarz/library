@@ -59,7 +59,7 @@ function createCard(id, title, author, pages, read) {
     ptitle.classList.add('title');
     pauthor.classList.add('author');
     ppages.classList.add('pages');
-    buttonGroup.classList.add('.button-group');
+    buttonGroup.classList.add('button-group');
     readButton.classList.add('read-button');
     deleteButton.classList.add('delete-book');
 
@@ -106,15 +106,16 @@ function generateID(min, max) {
 };
 
 function matchID(cardId, element) {
-    if (parseInt(cardId) === element) {
+    if (cardId.toString() === element.toString()) {
       return true;
     } return false;
 };
 
 function deleteBook(event) {
-    const cardId = event.target.parentElement.id;
+    const cardId = event.target.parentElement.parentElement.id;
     const card = event.target.parentElement.parentElement;
     const arrIndex = myLibrary.findIndex((e) => matchID(cardId, e.id));
+    console.log(arrIndex)
     myLibrary.splice(arrIndex, 1);
     console.log(myLibrary);
     card.remove();
@@ -124,6 +125,7 @@ function readToggle(event) {
     const cardId = event.target.parentElement.parentElement.id
     const readButton = event.currentTarget;
     const arrIndex = myLibrary.findIndex((e) => matchID(cardId, e.id));
+    console.log(arrIndex)
     if (myLibrary[arrIndex].read === false) {
         myLibrary[arrIndex].isRead();
         readButton.innerText = 'READ';
@@ -146,6 +148,7 @@ function toggleColor(event) {
 //Form open and close
 function openForm() {
     document.querySelector('.form-pop-up').style.display = 'block';
+    document.querySelector('.overlay').style.display = 'block';
 };
 function closeForm() {
     const ftitle = document.getElementById('title').value;
@@ -154,5 +157,6 @@ function closeForm() {
     if (!ftitle || !fauthor || !fpages) return; // if form input is null don't close the form.
 
     document.querySelector('.form-pop-up').style.display = 'none';
+    document.querySelector('.overlay').style.display = 'none';
 };
 
