@@ -17,11 +17,38 @@ body {
     box-shadow: 0 2px 2px #34f1bc;
 }
 
+#form-container {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+#open-form {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Sono', sans-serif;
+    font-size: 3rem;
+    padding: 0;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 0;
+    background-color: #ecfdf5;
+    color: #064e3b;
+}
+
+#open-form:hover {
+    background-color: #34d399;
+    transition: 100ms;
+}
+
 .form-pop-up {
     display: none;
 }
 
 #book-shelf {
+    margin: 30px;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 25px;
