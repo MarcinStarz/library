@@ -23,6 +23,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-between;
     background-color: #ecfdf5;
     box-shadow: 2px 2px 5px #34f1bc;
     border-radius: 0.6rem;
@@ -34,14 +35,23 @@
     margin: 15px;
 }
 
-.card > button {
+.button-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
+    width: 80%;
+    margin-bottom: 15px;
+}
+
+.button-group > button {
     font-family: 'Sono', sans-serif;
     font-size: 1.1rem;
     font-weight: 500;
     border: 0;
-    border-radius: 5px;
-    padding: 5px;
-    width: 80%;
+    border-radius: 8px;
+    padding: 6px;
+    width: 100%;
 }
 
 .delete-book {
