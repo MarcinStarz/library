@@ -21,12 +21,10 @@ Book.prototype.info = function() {
 
 Book.prototype.isRead = function() {
     this.read = true;
-    console.log('book is read');
 };
 
 Book.prototype.notRead = function() {
     this.read = false;
-    console.log("books isn't read");
 };
 
 function addBookToLibrary() {
@@ -40,8 +38,7 @@ function addBookToLibrary() {
     const newBook = new Book(bookId, ftitle, fauthor, fpages, fread);
     myLibrary.push(newBook);
     displayTheBook();
-    console.log(newBook);
-    console.log(myLibrary);
+    
     form.reset();
 };
 
@@ -69,9 +66,7 @@ function createCard(id, title, author, pages, read) {
     readButton.innerText = read === true ? "READ" : "NOT READ YET";
     readButton.style.backgroundColor = readButton.innerText === "READ" ? '#059669' : 'rgb(225, 110, 110)';
     deleteButton.innerText = 'DELETE BOOK';
-    console.log(title, author, pages, read);
 
-    
     bookShelf.appendChild(card);
     card.appendChild(ptitle);
     card.appendChild(pauthor);
@@ -115,9 +110,8 @@ function deleteBook(event) {
     const cardId = event.target.parentElement.parentElement.id;
     const card = event.target.parentElement.parentElement;
     const arrIndex = myLibrary.findIndex((e) => matchID(cardId, e.id));
-    console.log(arrIndex)
+    
     myLibrary.splice(arrIndex, 1);
-    console.log(myLibrary);
     card.remove();
 };
     
@@ -125,7 +119,7 @@ function readToggle(event) {
     const cardId = event.target.parentElement.parentElement.id
     const readButton = event.currentTarget;
     const arrIndex = myLibrary.findIndex((e) => matchID(cardId, e.id));
-    console.log(arrIndex)
+    
     if (myLibrary[arrIndex].read === false) {
         myLibrary[arrIndex].isRead();
         readButton.innerText = 'READ';
@@ -133,23 +127,23 @@ function readToggle(event) {
         myLibrary[arrIndex].notRead();
         readButton.innerText = 'NOT READ YET';
     };
-    console.log(myLibrary[arrIndex]);
 };
 
 function toggleColor(event) {
     const readValue = event.currentTarget.innerText;
     const readButton = event.currentTarget;
+
     if (readValue === 'READ') {
         readButton.style.backgroundColor = 'rgb(225, 110, 110)';
     } else readButton.style.backgroundColor = '#059669';
-    console.log(readValue);
-}
+};
 
 //Form open and close
 function openForm() {
     document.querySelector('.form-pop-up').style.display = 'block';
     document.querySelector('.overlay').style.display = 'block';
 };
+
 function closeForm() {
     const ftitle = document.getElementById('title').value;
     const fauthor = document.getElementById('author').value;
@@ -163,5 +157,5 @@ function closeForm() {
 function exitForm() {
     document.querySelector('.form-pop-up').style.display = 'none';
     document.querySelector('.overlay').style.display = 'none';
-}
+};
 
