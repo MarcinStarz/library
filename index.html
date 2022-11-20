@@ -22,7 +22,7 @@
                 <input type="text" id="author" placeholder="Author" minlength="1" maxlength="100">
                 <input type="number" id="pages" placeholder="Pages" min="1" max="99999">
                 <div class="checkbox-wrapper">
-                    <p>Have you read it?</p>
+                    <label for="is_read">Have you read it?</label>
                     <input type="checkbox" name="is_read" id="is-read">
                 </div>
         
@@ -33,6 +33,6 @@
 
     <div id="book-shelf">
     </div>
-    <div class="overlay"></div>
+    <div class="overlay" onclick="exitForm()"></div>
 </body>
 </html>

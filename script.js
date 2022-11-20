@@ -160,3 +160,8 @@ function closeForm() {
     document.querySelector('.overlay').style.display = 'none';
 };
 
+function exitForm() {
+    document.querySelector('.form-pop-up').style.display = 'none';
+    document.querySelector('.overlay').style.display = 'none';
+}
+
