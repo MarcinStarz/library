@@ -3,44 +3,54 @@ const addBookBtn = document.querySelector('.addbook-btn');
 const bookShelf = document.querySelector('#book-shelf');
 
 form.addEventListener('submit', (e) => e.preventDefault());
-addBookBtn.addEventListener('click', () => addBookToLibrary());
+addBookBtn.addEventListener('click', () => myLibrary.addBookToLibrary());
 
-let myLibrary = [];
+class Book {
+    constructor(id, title, author, pages, read) {
+        this.id = id;
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
+    }
 
-function Book(id, title, author, pages, read) {
-    this.id = id;
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
-};
+    isRead() {
+        this.read = true;
+    }
 
-Book.prototype.info = function() {
-    return this.title + " by " + this.author + ", " + this.pages + " pages, " + this.read;
-};
+    notRead() {
+        this.read = false;
+    }
+}
 
-Book.prototype.isRead = function() {
-    this.read = true;
-};
+class Library {
+    bookId;
+    ftitle;
+    fauthor;
+    fpages;
+    fread;
+    newBook
 
-Book.prototype.notRead = function() {
-    this.read = false;
-};
+    constructor() {
+        this.library = []
+    }
 
-function addBookToLibrary() {
-    const bookId = generateID(10000, 99999);
-    const ftitle = document.getElementById('title').value;
-    const fauthor = document.getElementById('author').value;
-    const fpages = document.getElementById('pages').value;
-    const fread = document.getElementById('is-read').checked;
-    if (!ftitle || !fauthor || !fpages) return;
-    
-    const newBook = new Book(bookId, ftitle, fauthor, fpages, fread);
-    myLibrary.push(newBook);
-    displayTheBook();
-    
-    form.reset();
-};
+    addBookToLibrary() {
+        this.bookId = generateID(10000, 99999);
+        this.ftitle = document.getElementById('title').value;
+        this.fauthor = document.getElementById('author').value;
+        this.fpages = document.getElementById('pages').value;
+        this.fread = document.getElementById('is-read').checked;
+
+        if (!this.ftitle || !this.fauthor || !this.fpages) return;
+        this.newBook = new Book(this.bookId, this.ftitle, this.fauthor, this.fpages, this.fread);
+        this.library.push(this.newBook);
+        displayTheBook();
+        
+        form.reset();
+    }
+}
+const myLibrary = new Library;
 
 function createCard(id, title, author, pages, read) {
     const card = document.createElement('div');
@@ -82,7 +92,7 @@ function createCard(id, title, author, pages, read) {
 
 function displayTheBook() {
     clearBookShelf();
-    myLibrary.forEach((e) => createCard(e.id, e.title, e.author, e.pages, e.read));
+    myLibrary.library.forEach((e) => createCard(e.id, e.title, e.author, e.pages, e.read));
 };
 
 function clearBookShelf() {
@@ -109,22 +119,22 @@ function matchID(cardId, element) {
 function deleteBook(event) {
     const cardId = event.target.parentElement.parentElement.id;
     const card = event.target.parentElement.parentElement;
-    const arrIndex = myLibrary.findIndex((e) => matchID(cardId, e.id));
+    const arrIndex = myLibrary.library.findIndex((e) => matchID(cardId, e.id));
     
-    myLibrary.splice(arrIndex, 1);
+    myLibrary.library.splice(arrIndex, 1);
     card.remove();
 };
     
 function readToggle(event) {
     const cardId = event.target.parentElement.parentElement.id
     const readButton = event.currentTarget;
-    const arrIndex = myLibrary.findIndex((e) => matchID(cardId, e.id));
+    const arrIndex = myLibrary.library.findIndex((e) => matchID(cardId, e.id));
     
-    if (myLibrary[arrIndex].read === false) {
-        myLibrary[arrIndex].isRead();
+    if (myLibrary.library[arrIndex].read === false) {
+        myLibrary.library[arrIndex].isRead();
         readButton.innerText = 'READ';
     } else {
-        myLibrary[arrIndex].notRead();
+        myLibrary.library[arrIndex].notRead();
         readButton.innerText = 'NOT READ YET';
     };
 };
